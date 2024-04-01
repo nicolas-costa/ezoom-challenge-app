@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tarefas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" pullMin="200" (ionRefresh)="fetchTasks($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Atualizar"
+      refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngFor="let task of this.tasks">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-align-items-start">{{task.title}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="ion-align-items-start">
+            {{task.description}}
+          </ion-card-content>
+          <ion-button (click)="this.onShow(task.id)" fill="clear">
+            <ion-text> <ion-icon name="eye"></ion-icon>  Ver</ion-text>
+          </ion-button>
+          <ion-button (click)="this.onEdit(task.id)" fill="clear">
+            <ion-text> <ion-icon name="pencil"></ion-icon>  Editar</ion-text>
+          </ion-button>
+          <ion-button (click)="this.onDelete(task.id)" fill="clear" color="danger">
+            <ion-text> <ion-icon name="close"></ion-icon>  Excluir</ion-text>
+          </ion-button>
+        </ion-card>
+      </ion-col>
+      <ion-infinite-scroll *ngIf="this.tasks && this.tasks.length" (ionInfinite)="onIonInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="this.onCreate()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

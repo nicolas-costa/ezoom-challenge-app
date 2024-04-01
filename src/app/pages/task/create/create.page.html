@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Criar tarefa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          Preencha os campos abaixo para criar a tarefa.
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Titulo*</ion-label>
+        <ion-input [(ngModel)]="task.title"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Data*</ion-label>
+        <ion-datetime presentation="date" [(ngModel)]="task.date"></ion-datetime>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Local</ion-label>
+        <ion-input [(ngModel)]="task.location"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Descrição*</ion-label>
+        <ion-textarea [(ngModel)]="task.description" rows="6"></ion-textarea>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Detalhes</ion-label>
+        <ion-textarea [(ngModel)]="task.details" rows="15"></ion-textarea>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="send()" [disabled]="isDisabled()">Criar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
